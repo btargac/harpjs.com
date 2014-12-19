@@ -30,6 +30,21 @@ Now, within `index.jade` you can iterate over the `_contents`, referencing each 
 <% } %>
 ```
 
+```ejs
+<% for(var i in public.images._contents){ %>
+  <% var image = public.images._contents[i] %>
+  <img src="images/<%= image %>" />
+<% } %>
+```
+
+If your OS brings additional files like thumbs.db that brokes up your design than you can try filtering with a regex match
+
+```ejs
+<% var image = public.images._contents[i] %>
+  <% if ( image.match(/\b.(jpg|bmp|jpeg|gif|png|tif)\b/gi) ) { %>
+		<img src="images/<%= image %>" />
+  <% } %>
+```
 This results in the following HTML:
 
 ```html
